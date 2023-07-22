@@ -512,7 +512,7 @@ class Linkedin(object):
             default_params.update(params)
 
             res = self._fetch(
-                f"/search/hits?{urlencode(default_params, safe='(),')}",
+                f"/search/hits?{urlencode(default_params, safe='(),', quote_via=quote)}",
                 headers={"accept": "application/vnd.linkedin.normalized+json+2.1"},
             )
             data = res.json()
