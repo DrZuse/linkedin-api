@@ -511,10 +511,15 @@ class Linkedin(object):
             }
             default_params.update(params)
 
+            urlencode_def_params = urlencode(default_params, safe='(),')
+            urlencode_params = urlencode(params, safe='(),', quote_via=quote)
+            fetch_uri = "/search/hits?" + urlencode_def_params + "&" + urlencode_params
+
             res = self._fetch(
-                f"/search/hits?{urlencode(default_params, safe='(),', quote_via=quote)}",
+                fetch_uri,
                 headers={"accept": "application/vnd.linkedin.normalized+json+2.1"},
             )
+            
             data = res.json()
 
             elements = data.get("included", [])
