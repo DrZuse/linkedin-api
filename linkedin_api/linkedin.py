@@ -509,7 +509,6 @@ class Linkedin(object):
                 "start": len(results) + offset,
                 "queryContext": "List(primaryHitType->JOBS,spellCorrectionEnabled->true)",
             }
-            default_params.update(params)
 
             urlencode_def_params = urlencode(default_params, safe='(),')
             urlencode_params = urlencode(params, safe='(),', quote_via=quote)
